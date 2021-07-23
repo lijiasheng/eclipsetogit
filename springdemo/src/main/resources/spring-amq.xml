@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:task="http://www.springframework.org/schema/task"
+    xmlns:jms="http://www.springframework.org/schema/jms"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd 
+        http://www.springframework.org/schema/task 
+        http://www.springframework.org/schema/task/spring-task.xsd 
+        http://www.springframework.org/schema/jms 
+        http://www.springframework.org/schema/jms/spring-jms.xsd " >
+
+   <context:component-scan base-package="com.soho.queue" ></context:component-scan>
+   
+   <!-- 定义ActiveMQ的连接工厂 -->
+   <bean id="targetConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+       <property name="brokerURL" value="tcp://localhost:61616"  />
+       <property name="userName" value="Admin"/>
+       <property name="password" value="Admin"/>
+   </bean>
+ 
+  
+  <bean id="connectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory">
+        <!-- 目标连接工厂 指向 ActiveMq工厂 -->
+        <property name="targetConnectionFactory" ref="targetConnectionFactory" />
+        <!-- session缓存的最大个数-->
+        <property name="sessionCacheSize" value="100" />
+    </bean>
+  
+    
+    <!-- 3.配置jmsTemplate，用于发送发送mq消息 -->
+    <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+        <property name="connectionFactory" ref="connectionFactory" />
+        <!-- 设置 jmsTemplate 不支持订阅模式，即：只支持queue模式。
+             如果项目需要同时支持queue和topic，那么就需要另外
+             注册一个jmsTemplate（把pubSubDomain设为true）-->
+        <property name="pubSubDomain" value="false"></property>
+    </bean>
+
+    <!-- 4.定义Queue监听器 -->
+    <jms:listener-container destination-type="queue" connection-factory="connectionFactory">
+        <!-- 每添加一个queue的监听，都需要在这里添加一个配置 -->
+        <!-- 这样配置就可以方便的对多个队列监听 , 每增加一个队列只需要添加一个 jms:listener -->
+        <!-- destination:队列名称, ref:指向对应的监听器对象 -->
+        <!-- 示例: <jms:listener destination="queueName" ref="consumerBean" /> -->
+        <jms:listener destination="myQueueA" ref="consumerA"/>
+    </jms:listener-container>   
+   
+</beans>

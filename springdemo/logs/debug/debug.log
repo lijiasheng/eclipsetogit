@@ -1,0 +1,36 @@
+2019-12-13 16:30:57,771|AbstractApplicationContext.java|590|Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@33afa13b
+2019-12-13 16:30:57,972|XmlBeanDefinitionReader.java|395|Loaded 4 bean definitions from class path resource [spring-lifecycle.xml]
+2019-12-13 16:30:58,004|DefaultSingletonBeanRegistry.java|213|Creating shared instance of singleton bean 'myBeanFactoryPostProcessor'
+2019-12-13 16:30:58,025|DefaultSingletonBeanRegistry.java|213|Creating shared instance of singleton bean 'myBeanPostProcessor'
+2019-12-13 16:30:58,025|DefaultSingletonBeanRegistry.java|213|Creating shared instance of singleton bean 'myInstantiationAwareBeanPostProcessor'
+2019-12-13 16:30:58,032|DefaultSingletonBeanRegistry.java|213|Creating shared instance of singleton bean 'beanLifeCycle'
+2019-12-13 16:36:05,786|AbstractApplicationContext.java|590|Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@33afa13b
+2019-12-13 16:36:05,989|XmlBeanDefinitionReader.java|395|Loaded 4 bean definitions from class path resource [spring-lifecycle.xml]
+2019-12-13 16:36:06,017|DefaultSingletonBeanRegistry.java|213|Creating shared instance of singleton bean 'myBeanFactoryPostProcessor'
+2019-12-13 16:36:06,035|DefaultSingletonBeanRegistry.java|213|Creating shared instance of singleton bean 'myBeanPostProcessor'
+2019-12-13 16:36:06,035|DefaultSingletonBeanRegistry.java|213|Creating shared instance of singleton bean 'myInstantiationAwareBeanPostProcessor'
+2019-12-13 16:36:06,040|DefaultSingletonBeanRegistry.java|213|Creating shared instance of singleton bean 'beanLifeCycle'
+2019-12-13 16:36:23,353|AbstractApplicationContext.java|590|Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@33afa13b
+2019-12-13 16:36:23,549|XmlBeanDefinitionReader.java|395|Loaded 4 bean definitions from class path resource [spring-lifecycle.xml]
+2019-12-13 16:36:23,581|DefaultSingletonBeanRegistry.java|213|Creating shared instance of singleton bean 'myBeanFactoryPostProcessor'
+2019-12-13 16:36:23,599|DefaultSingletonBeanRegistry.java|213|Creating shared instance of singleton bean 'myBeanPostProcessor'
+2019-12-13 16:36:23,600|DefaultSingletonBeanRegistry.java|213|Creating shared instance of singleton bean 'myInstantiationAwareBeanPostProcessor'
+2019-12-13 16:36:23,606|DefaultSingletonBeanRegistry.java|213|Creating shared instance of singleton bean 'beanLifeCycle'
+2019-12-13 16:52:29,009|AbstractApplicationContext.java|590|Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@33afa13b
+2019-12-13 16:52:29,202|XmlBeanDefinitionReader.java|395|Loaded 4 bean definitions from class path resource [spring-lifecycle.xml]
+2019-12-13 16:52:29,228|DefaultSingletonBeanRegistry.java|213|Creating shared instance of singleton bean 'myBeanFactoryPostProcessor'
+2019-12-13 16:52:29,246|DefaultSingletonBeanRegistry.java|213|Creating shared instance of singleton bean 'myBeanPostProcessor'
+2019-12-13 16:52:29,247|DefaultSingletonBeanRegistry.java|213|Creating shared instance of singleton bean 'myInstantiationAwareBeanPostProcessor'
+2019-12-13 16:52:29,252|DefaultSingletonBeanRegistry.java|213|Creating shared instance of singleton bean 'beanLifeCycle'
+2019-12-13 16:53:01,944|AbstractApplicationContext.java|590|Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@33afa13b
+2019-12-13 16:53:02,160|XmlBeanDefinitionReader.java|395|Loaded 4 bean definitions from class path resource [spring-lifecycle.xml]
+2019-12-13 16:53:02,187|DefaultSingletonBeanRegistry.java|213|Creating shared instance of singleton bean 'myBeanFactoryPostProcessor'
+2019-12-13 16:53:02,204|DefaultSingletonBeanRegistry.java|213|Creating shared instance of singleton bean 'myBeanPostProcessor'
+2019-12-13 16:53:02,205|DefaultSingletonBeanRegistry.java|213|Creating shared instance of singleton bean 'myInstantiationAwareBeanPostProcessor'
+2019-12-13 16:53:02,210|DefaultSingletonBeanRegistry.java|213|Creating shared instance of singleton bean 'beanLifeCycle'
+2019-12-13 16:58:29,906|AbstractApplicationContext.java|590|Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@33afa13b
+2019-12-13 16:58:30,105|XmlBeanDefinitionReader.java|395|Loaded 4 bean definitions from class path resource [spring-lifecycle.xml]
+2019-12-13 16:58:30,131|DefaultSingletonBeanRegistry.java|213|Creating shared instance of singleton bean 'myBeanFactoryPostProcessor'
+2019-12-13 16:58:30,148|DefaultSingletonBeanRegistry.java|213|Creating shared instance of singleton bean 'myBeanPostProcessor'
+2019-12-13 16:58:30,149|DefaultSingletonBeanRegistry.java|213|Creating shared instance of singleton bean 'myInstantiationAwareBeanPostProcessor'
+2019-12-13 16:58:30,153|DefaultSingletonBeanRegistry.java|213|Creating shared instance of singleton bean 'beanLifeCycle'
