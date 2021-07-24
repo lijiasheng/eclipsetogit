@@ -11,6 +11,9 @@ public class TaskTest {
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-tasks.xml");  
         
 		System.getProperty("user.name") ;
+		
+		System.out.println("Task testing finished....");
+		
 	}
 
 }
