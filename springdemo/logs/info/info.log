@@ -55,3 +55,9 @@
 2020-08-19 14:54:11,010|PostProcessorRegistrationDelegate.java|330|Bean 'taskExecutor' of type [org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
 2020-08-19 14:54:11,061|ExecutorConfigurationSupport.java|171|Initializing ExecutorService 'taskSchedudler'
 2020-08-19 14:54:11,061|PostProcessorRegistrationDelegate.java|330|Bean 'taskSchedudler' of type [org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-07-24 14:33:18,365|PostProcessorRegistrationDelegate.java|330|Bean '(inner bean)#5be1d0a4' of type [java.util.concurrent.ThreadPoolExecutor$AbortPolicy] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-07-24 14:33:18,388|ExecutorConfigurationSupport.java|171|Initializing ExecutorService
+2021-07-24 14:33:18,389|PostProcessorRegistrationDelegate.java|330|Bean 'taskExecutor' of type [org.springframework.scheduling.config.TaskExecutorFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-07-24 14:33:18,389|PostProcessorRegistrationDelegate.java|330|Bean 'taskExecutor' of type [org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-07-24 14:33:18,440|ExecutorConfigurationSupport.java|171|Initializing ExecutorService 'taskSchedudler'
+2021-07-24 14:33:18,440|PostProcessorRegistrationDelegate.java|330|Bean 'taskSchedudler' of type [org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)

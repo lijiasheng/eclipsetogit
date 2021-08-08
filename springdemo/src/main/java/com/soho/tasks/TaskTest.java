@@ -16,6 +16,8 @@ public class TaskTest {
 		
 		System.out.println("Task testing finished....");
 		
+		System.out.println("[Dev Branch] Add texts...");
+		
 	}
 
 }
