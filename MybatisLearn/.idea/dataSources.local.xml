@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal" created-in="IU-212.5284.40">
+    <data-source name="Oracle11" uuid="8de0053c-ed94-4995-a7b3-56d62916966e">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="ORACLE" exact-version="0" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>cbs</user-name>
+      <schema-mapping />
+    </data-source>
+  </component>
+</project>

@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Main-Class: com.soho.Demo2
+Class-Path: simplefan-11.2.0.4.jar mybatis-3.5.9.jar osdt_core-11.2.0.4.
+ jar HikariCP-3.0.0.jar jcl-over-slf4j-1.7.36.jar ons-11.2.0.4.jar sprin
+ g-context-5.3.5.jar spring-beans-5.3.5.jar spring-aop-5.3.5.jar ojdbc6-
+ 11.2.0.4.jar oraclepki-11.2.0.4.jar spring-expression-5.3.5.jar spring-
+ test-5.3.5.jar spring-jcl-5.3.5.jar log4j-api-2.17.1.jar spring-jdbc-5.
+ 3.5.jar ucp-11.2.0.4.jar spring-tx-5.3.5.jar slf4j-api-1.7.36.jar osdt_
+ cert-11.2.0.4.jar spring-core-5.3.5.jar mybatis-spring-2.0.7.jar log4j-
+ core-2.17.1.jar log4j-slf4j-impl-2.17.1.jar
+

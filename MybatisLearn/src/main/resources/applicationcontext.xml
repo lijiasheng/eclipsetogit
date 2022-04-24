@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:cache="http://www.springframework.org/schema/cache"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+        http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
+
+    <!-- 注解配置下，需要设置 扫描的基类包路径-->
+    <context:component-scan base-package="com.soho.service"></context:component-scan>
+
+    <!-- 事务注解驱动，标注@Transactional的类和方法将具有事务性 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <!-- 引入外部的属性文件位置 -->
+    <context:property-placeholder location="classpath:db.properties"/>
+
+    <!--1.配置数据源-->
+    <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource">
+        <property name="driverClassName" value="${db.driver}"/>
+        <property name="jdbcUrl" value="${db.url}"/>
+        <property name="username" value="${db.username}"/>
+        <property name="password" value="${db.password}"/>
+        <property name="autoCommit" value="false"/>
+        <property name="connectionTimeout" value="30000"/>
+        <property name="idleTimeout" value="30000"/>
+        <property name="maximumPoolSize" value="10"/>
+        <property name="maxLifetime" value="1800000"/>
+    </bean>
+
+    <!--配置Mybatis的属性-->
+    <bean id="mybatis-config" class="org.apache.ibatis.session.Configuration">
+        <property name="logImpl" value="org.apache.ibatis.logging.stdout.StdOutImpl"/>
+        <property name="cacheEnabled" value="true"/>
+    </bean>
+
+    <!-- 2. 配置SqlSessionFactory-->
+    <!-- 不启用MyBatis的配置文件 <property name="configLocation" value="classpath:mybatis-config.xml" /> -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configuration" ref="mybatis-config"/>
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+    </bean>
+
+    <!-- 3.Spring和Mybatis集成方式之：MapperScannerConfigurer -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.soho.mapper"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+
+    <!-- 4. 事务管理委托给spring容器管理 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- Spring和Mybatis集成方式之一： MapperFactoryBean生成CustomerMapper接口的代理类对象customerMapper -->
+    <!--  
+    <bean id="customerMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="dao.CustomerMapper"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    </bean>
+    -->
+
+    <!-- Spring和Mybatis集成方式之二：MapperScannerConfigurer -->
+    <!--    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">  -->
+    <!--       <property name="basePackage" value="nokb.deposit.dao" />  -->
+    <!--       <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>-->
+    <!--    </bean>-->
+
+    <!-- Spring和Mybatis集成方式之三：自定义编程方式
+         (1) 定义一个AbstractDao, 继承SqlSessionDaoSupport. 调用 setSqlSessionFactory注入SqlSessionTemplate. 
+         (2) 应用自定义的UserDao继承AbstractDao, 通过getSqlSession()得到SqlSessionTemplate. 
+                                       这样就可以操作selectOne, selectCursor等
+    -->
+</beans>

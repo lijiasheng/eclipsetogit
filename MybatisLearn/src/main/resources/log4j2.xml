@@ -1,0 +1,115 @@
+<configuration  status="OFF" monitorInterval="30">
+    <Properties>
+        <Property name="LOG_DIR" value="D:\logs" > </Property>
+    </Properties>
+    <Appenders>
+        <!--设置在控制台打印日志-->
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss SSS}][%l][%-5p][%t][Message=%m]%n" charset="utf-8"/>
+        </Console>
+        <!--设置级别为 DEBUG 日志输出到 debug.log 中-->
+        <RollingRandomAccessFile name="debug"
+                     			 fileName="${LOG_DIR}/debug.log"
+                     			 filePattern="${LOG_DIR}/debug-%d{yyyy-MM-dd}.log">
+            <Filters>
+                <!--设置只输出级别为 debug 的日志-->
+                <ThresholdFilter level="INFO" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <PatternLayout
+                    pattern="[%d{yyyy-MM-dd HH:mm:ss SSS}][%l][%-5p][%t][Message=%m]%n"/>
+            <Policies>
+                <!-- 按天生成日志文件-->
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="50 MB" />
+            </Policies>
+            <!-- 最多保存日志文件的数目 -->
+            <DefaultRolloverStrategy max="15"/>
+        </RollingRandomAccessFile>
+		
+        <RollingRandomAccessFile name="info"
+                     			 fileName="${LOG_DIR}/info.log"
+                     			 filePattern="${LOG_DIR}/info-%d{yyyy-MM-dd}.log">
+            <Filters>
+                <ThresholdFilter level="WARN" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <PatternLayout
+                    pattern="[%d{yyyy-MM-dd HH:mm:ss SSS}][%l][%-5p][%t][Message=%m]%n" charset="utf-8"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy  interval="1"/>
+            </Policies>
+            <DefaultRolloverStrategy max="60"/>
+        </RollingRandomAccessFile>
+		
+        <RollingRandomAccessFile name="warn"
+                     			 fileName="${LOG_DIR}/warn.log"
+                     			 filePattern="${LOG_DIR}/warn-%d{yyyy-MM-dd}.log">
+            <Filters>
+                <ThresholdFilter level="ERROR" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="WARN" onMatch="ACCEPT" onMismatch="DENY" />
+            </Filters>
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss SSS}][%l][%-5p][%t][Message=%m]%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+            </Policies>
+            <DefaultRolloverStrategy max="60"/>
+        </RollingRandomAccessFile>
+		
+        <RollingRandomAccessFile name="error"
+                                 fileName="${LOG_DIR}/error.log"
+                     			 filePattern="${LOG_DIR}/error-%d{yyyy-MM-dd}.log">
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss SSS}][%l][%-5p][%t][Message=%m]%n"/>
+            <Filters>
+                <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+            </Policies>
+            <DefaultRolloverStrategy max="60"/>
+        </RollingRandomAccessFile>
+		
+        <!-- 设置 task_suc 日志 -->
+        <RollingRandomAccessFile name="task_suc"
+                     			 fileName="${LOG_DIR}/task_suc.log"
+                     			 filePattern="${LOG_DIR}/task_suc-%d{yyyy-MM-dd}.log">
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss SSS}][%l][%-5p][%t][Message=%m]%n" charset="utf-8"/>
+            <Filters>
+                <ThresholdFilter level="WARN" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+            </Policies>
+            <DefaultRolloverStrategy max="90"/>
+        </RollingRandomAccessFile>
+    </Appenders>
+	
+    <Loggers>
+        <!-- org.springframework 只输出 INFO 级别以上的日志 -->
+        <logger name="org.springframework" additivity="false" level="INFO">
+        </logger>
+        <logger name="com.zaxxer.hikari" additivity="false" level="TRACE">
+            <AppenderRef ref="console" />
+        </logger>
+        <logger name="org.apache.ibatis" additivity="false" level="TRACE" >
+            <AppenderRef ref="console" />
+        </logger>
+        <logger name="org.mybatis" level="DEBUG">
+        </logger>
+
+        <!-- task_suc日志,打印某个package的日志 -->
+        <logger name="com.soho" level="trace" additivity="false">
+            <AppenderRef ref="task_suc"/>
+            <AppenderRef ref="console" />
+        </logger>
+
+        <Root level="trace">
+            <AppenderRef ref="console"/>
+            <AppenderRef ref="debug"/>
+            <AppenderRef ref="info"/>
+            <AppenderRef ref="warn"/>
+            <AppenderRef ref="error"/>
+        </Root>
+    </Loggers>
+</configuration>
