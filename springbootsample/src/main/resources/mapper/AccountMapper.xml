@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.simplebank.mapper.AccountMapper">
+        <resultMap type="com.simplebank.model.AccountDO" id="accountResultMap">
+            <id      property="id" column="ID" />
+            <result  property="accountNo" column="ACCOUNTNO" />
+            <result  property="name" column="NAME"/>
+            <result  property="userId" column="USERID"/>
+            <result  property="balance" column="BAL" />
+            <result  property="ccy" column="CCY"/>
+        </resultMap>
+
+    <select id="selAccountById" parameterType="Integer" resultMap="accountResultMap">
+        select ID, ACCOUNTNO, NAME, USERID, BAL, CCY
+        FROM MY_ACCOUNT
+        where ID = #{id}
+    </select>
+
+    <select id="selAccountByIdForUpd" parameterType="Integer" resultType="com.simplebank.model.AccountDO">
+        select ID, ACCOUNTNO, NAME, USERID, BAL, CCY
+        FROM MY_ACCOUNT
+        where ID = #{id} for update
+    </select>
+
+    <insert id="addAccount" parameterType="com.simplebank.model.AccountDO">
+        insert into MY_ACCOUNT(ID, ACCOUNTNO, NAME, USERID, BAL, CCY)
+        values (#{id}, #{accountNo}, #{name}, #{userId}, #{balance}, #{ccy})
+    </insert>
+
+    <update id="updAccount" parameterType="com.simplebank.model.AccountDO">
+        update MY_ACCOUNT
+        set ACCOUNTNO=#{accountNo},
+            NAME=#{name},
+            USERID=#{userId},
+            BAL=#{balance},
+            CCY=#{ccy}
+        where ID = #{id}
+    </update>
+
+    <delete id="delAccountById"  parameterType="Integer">
+        delete from MY_ACCOUNT where ID = #{id}
+    </delete>
+
+ </mapper>
