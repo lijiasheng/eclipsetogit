@@ -3,3 +3,4 @@ in dev-0.1
 in master-0.1
 in master-0.2
 in master-0.3,dev-0.2
+演示远程分支和本地分支的冲突
